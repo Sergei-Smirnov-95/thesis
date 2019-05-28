@@ -45,7 +45,23 @@
 \usepackage{nomencl}
 \usepackage{tabu}
 \usepackage{float}
-
+%фикс отступов
+\usepackage{enumitem}
+\makeatletter
+\renewenvironment{thebibliography}[1]
+{\chapter*{\bibname}%
+	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
+	\begin{enumerate}[label={\arabic{enumi}.},itemindent=-0.4cm, leftmargin=0.9cm, noitemsep]
+		\@openbib@code
+		\sloppy
+		\clubpenalty4000
+		\@clubpenalty \clubpenalty
+		\widowpenalty4000
+		\sfcode`\.\@m}
+	{\def\@noitemerr
+		{\@latex@warning{Empty `thebibliography' environment}}%
+\end{enumerate}}
+\makeatother
 % Для таблиц с объединенными ячейками
 \usepackage{multirow}
 
