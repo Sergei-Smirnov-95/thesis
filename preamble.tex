@@ -49,7 +49,7 @@
 \usepackage{enumitem}
 \makeatletter
 \renewenvironment{thebibliography}[1]
-{\chapter*{\bibname}%
+{\nchapter{\bibname}%
 	\@mkboth{\MakeUppercase\bibname}{\MakeUppercase\bibname}%
 	\begin{enumerate}[label={\arabic{enumi}.},itemindent=-0.4cm, leftmargin=0.9cm, noitemsep]
 		\@openbib@code
