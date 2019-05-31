@@ -1,0 +1,471 @@
+    <!doctype html>
+    <html lang="en">
+    <head>
+      <meta charset="utf-8">
+      <title>Мониторинг климатических параметров СХД</title>
+      <style>
+      img {
+        height: 19px;
+      }
+      </style>
+      <link href="css/surface_styles.css" rel="stylesheet">
+      <link rel="stylesheet" href="/maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+      <script src="js/Chart.bundle.min.js"></script>
+      <script src="js/utils.js"></script>
+      <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    </head>
+    <body>
+     
+    <main class="g--12 g-m--12 m-m--0 no-margin-vertical">
+        <header class="container">
+          <h1 class="m--1 g--6 g-s--12 docsHeader">Мониторинг климатических параметров СХД</h1> 
+        </header>
+
+        <div class="g--10 m--1 container container--wrap--s">
+          <div class="docsHeader color--asbestos">Текущие значения</h3></div>
+          <div style="line-height:45px;"><img style="display: none;vertical-align: bottom;bottom: 0;" id="loader" style="width:220px; height:19px;vertical-align: bottom;" src="img/ajax-loader.gif" /></div>
+        </div>     
+        
+        <div class="g--10 m--1 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--3 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+            <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Температура 1</h6>   
+            <div id="temp1"><h1>-- &#8451;</h1></div>    
+              <div style="width: 100%">
+                <canvas id="canvas5"></canvas>
+              </div>
+            </div>
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+            <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Температура 2</h6>
+            <div id="temp2"><h1>-- &#8451;</h1></div>    
+            <div style="width: 100%">
+              <canvas id="canvas6"></canvas>
+            </div>
+          </div>
+          </div>
+         <div class="g--3 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Температура 3</h6>
+            <div id="temp3"><h1>-- &#8451;</h1></div>    
+            <div style="width: 100%">
+              <canvas id="canvas7"></canvas>
+            </div>
+          </div>
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+            <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Температура 4</h6>
+            <div id="temp4"><h1>-- &#8451;</h1></div>    
+            <div style="width: 100%">
+              <canvas id="canvas8"></canvas>
+            </div>
+          </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--4 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+            <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Вибрация</h6>       
+            <div id="vibration"><h1>-- Дб</h1></div>
+              <div style="width: 100%">
+                <canvas id="canvas9"></canvas>
+              </div>
+              </div>
+          </div>
+
+          <div class="g--4 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+            <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Давление</h6>
+            <div id="pressure"><h1>-- Па</h1></div>
+            <div style="width: 100%">
+              <canvas id="canvas10"></canvas>
+            </div>
+          </div>
+          </div>
+         <div class="g--4 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          <div class="card" style="margin-right: 5px;margin-left: 5px;">
+            <h6 class="color--asbestos">Влажность</h6>
+            <div id="humidity"><h1>-- %</h1></div>
+            <div style="width: 100%">
+              <canvas id="canvas11"></canvas>
+            </div>
+          </div>
+          </div>
+
+        </div>
+
+
+        <h3 class="m--1 g--6 g-s--12 docsHeader color--asbestos">История наблюдений</h3>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Температура 1</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas1"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%" id="t1stat">
+              </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Температура 2</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas12"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            
+            <div style="width: 100%" id="t2stat">
+                </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Температура 3</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas13"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%" id="t3stat">
+                </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Температура 4</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas14"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%" id="t4stat">
+                </div>
+          </div>
+        </div>
+
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Атмосферное давление</h6>     
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas3"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%" id="pressstat">
+              </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Вибрация</h6>     
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas4"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%" id="vibstat">
+              </div>
+          </div>
+        </div>
+
+        <div class="g--8 m--2 container container--wrap--s" style="margin-top:0px; margin-bottom: 0px;">
+          <div class="g--8 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Относительная влажность</h6>     
+            <hr class="color--asbestos"/>
+              <div style="width: 100%">
+                <canvas id="canvas2"></canvas>
+              </div>
+          </div>
+
+          <div class="g--1 g-s--12 fade-in-from-top anim-delay--5" style="margin-bottom: 0px;">
+          </div>
+
+          <div class="g--3 g-s--12 fade-in-from-top card anim-delay--5" style="margin-bottom: 0px;">
+            <h6 class="color--asbestos">Значения</h6>        
+            <hr class="color--asbestos"/>
+              <div style="width: 100%"  id="humstat">
+                </div>
+          </div>
+        </div>    
+      </main>
+     
+    <script type="text/javascript">
+    window.setInterval(pollSensors, 10000);
+    window.setInterval(pollSensorsArray, 100000);
+    
+    function updateChart(chart, value) {
+          chart.data.labels.push(chart.data.labels[chart.data.labels.length-1] + 1);
+          chart.data.datasets[0].data.push(parseFloat(value));
+
+
+          if (chart.data.labels.length > 20) {
+            chart.data.labels.splice(0,1);
+            chart.data.datasets[0].data.splice(0,1);
+          }
+
+          chart.update();
+    }
+
+    function pollSensors(){
+      $.ajax({
+        url: 'https://spbpu.com/prkpsb-monitor/all',
+        type: 'get',
+        dataType: 'json',
+        beforeSend: function() {
+          $('#loader').show();
+        },
+        complete: function() {
+          $('#loader').hide();  
+        },
+        success: function(json) {
+
+          $('#humidity').html('<h1>' + json['Humidity'] + ' %</h1>');
+          $('#pressure').html('<h1>' + Math.round(parseFloat(json['Pressure'])*0.00750063755419211) +  ' мм. рт. ст.</h1>');
+          $('#vibration').html('<h1>' + json['Vibration'] + ' Дб</h1>');
+
+          $('#temp1').html('<h1>' + json['Temperature']['Temperature_0'] + ' &#8451;</h1>');
+          $('#temp2').html('<h1>' + json['Temperature']['Temperature_1'] + ' &#8451;</h1>');
+          $('#temp3').html('<h1>' + json['Temperature']['Temperature_2'] + ' &#8451;</h1>');
+          $('#temp4').html('<h1>' + json['Temperature']['Temperature_3'] + ' &#8451;</h1>');
+
+
+          updateChart(window['myMixedChart5'], json['Temperature']['Temperature_0']);
+          updateChart(window['myMixedChart6'], json['Temperature']['Temperature_1']);
+          updateChart(window['myMixedChart7'], json['Temperature']['Temperature_2']);
+          updateChart(window['myMixedChart8'], json['Temperature']['Temperature_3']);
+          updateChart(window['myMixedChart9'], json['Vibration']);
+          updateChart(window['myMixedChart10'], Math.round(parseFloat(json['Pressure'])*0.00750063755419211));
+          updateChart(window['myMixedChart11'], json['Humidity']);                
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+      });
+    }
+
+    function pollSensorsArray(){
+      pollSensor('https://spbpu.com/prkpsb-monitor/t1', window.chartColors.purple, '#t1stat', 1)
+      pollSensor('https://spbpu.com/prkpsb-monitor/hum', window.chartColors.beige, '#humstat', 2)
+      pollSensor('https://spbpu.com/prkpsb-monitor/press', window.chartColors.green, '#pressstat', 3, function(x){return Math.round(parseFloat(x)*0.00750063755419211); })
+      pollSensor('https://spbpu.com/prkpsb-monitor/vib', window.chartColors.red, '#vibstat', 4);      
+      pollSensor('https://spbpu.com/prkpsb-monitor/t2', '#FF00FF', '#t2stat', 12)
+      pollSensor('https://spbpu.com/prkpsb-monitor/t3', '#DA70D6', '#t3stat', 13)
+      pollSensor('https://spbpu.com/prkpsb-monitor/t4', '#D8BFD8', '#t4stat', 14)
+    }
+
+    function pollSensor(url, color, statname, position, func) {
+      $.ajax({
+        url: url, //'https://spbpu.com/prkpsb-monitor/vib',
+        type: 'get',
+        dataType: 'text',
+        beforeSend: function() {
+          $('#loader').show();
+        },
+        complete: function() {
+          $('#loader').hide();  
+        },
+        success: function(text) {
+
+
+          yS = text.trim().split(/\n/g).reverse();
+          xS = [];
+          for (var i = yS.length - 1; i >= 0; i--) {
+            xS[i] = i;
+            if (func) {
+              yS[i] = func(yS[i]);
+            }
+          }
+
+          var vibrData = {
+            labels: xS,
+            datasets: [
+            {
+              type: 'line',
+              label: 'Среднее',
+              borderColor: color,
+              borderWidth: 2,
+              fill: true,
+              data: yS
+            }
+            ]
+          };
+
+          calcArrayParams(statname, yS);
+
+
+
+          var ctx = document.getElementById('canvas' + position).getContext('2d');
+          window['myMixedChart' + position] = new Chart(ctx, {
+            type: 'bar',
+            data: vibrData,
+            options: {
+              responsive: true,
+              title: {
+                display: false
+              },
+              tooltips: {
+                mode: 'index',
+                intersect: true
+              }
+            }
+          });        
+        },
+        error: function(xhr, ajaxOptions, thrownError) {
+          console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+      });
+    }
+
+    function initDynamicChart(color, position) {
+          var vibrData1 = {
+            labels: [],
+            datasets: [
+            {
+              type: 'line',
+              label: 'Среднее',
+              borderColor: color,
+              backgroundColor: color,
+              borderWidth: 0,
+              pointRadius: 0,
+              fill: true,
+              data: []
+            }
+            ]
+          };
+
+          var ctx = document.getElementById('canvas' + position).getContext('2d');
+          window['myMixedChart' + position] = new Chart(ctx, {
+            type: 'line',
+            responsive:true,
+            maintainAspectRatio: false,
+            data: vibrData1,
+            options: {
+              responsive: true,
+              title: {
+                display: false
+              },
+              tooltips: {
+                mode: 'index',
+                intersect: true,
+                display: false
+              },
+              legend: {
+                display: false
+              },
+              elements: {
+                    point:{
+                        radius: 0
+                    }
+              },
+              scales: {
+                  xAxes: [{
+                      gridLines: {
+                          color: "rgba(0, 0, 0, 0)",
+                      },
+                      display: false
+                  }],
+                  yAxes: [{
+                      gridLines: {
+                          color: "rgba(0, 0, 0, 0)",
+                      },
+                      display: false  
+                  }]
+              }
+            }
+          });
+    }
+   
+    function initDynamicCharts() {
+      initDynamicChart(window.chartColors.purple, 5);
+      initDynamicChart('#FF00FF', 6);
+      initDynamicChart('#DA70D6', 7);
+      initDynamicChart('#D8BFD8', 8);
+      initDynamicChart(window.chartColors.DeepSkyBlue, 11);
+      initDynamicChart(window.chartColors.green, 10);
+      initDynamicChart(window.chartColors.red, 9);     
+    }
+
+    function calcArrayParams(tag, arr) {
+      avg = 0;
+      max = 0;
+      min = 0;
+      current = 0;
+
+      if (arr.length)
+      {        
+          sum = arr.reduce(function(a, b) { return parseFloat(a) + parseFloat(b); });
+          avg = Number((sum / arr.length).toFixed(2));
+          max = Math.max.apply(null, arr);
+          min = Math.min.apply(null, arr);
+          current = arr[arr.length-1];
+      }
+      $(tag).html('<p><span style="font-weight:300;" class="color--asbestos"> Среднее:</span> '+ avg +'</p>' + '<p><span style="font-weight:300;" class="color--asbestos"> Максимум:</span> '+ max +'</p>' + '<p><span style="font-weight:300;" class="color--asbestos"> Минимум:</span> '+ min +'</p>' + '<p><span style="font-weight:300;" class="color--asbestos"> Текущее:</span> '+ current +'</p>');
+    }
+
+  </script>
+
+  <script type="text/javascript">
+        window.onload = function() {
+          initDynamicCharts();
+          pollSensors();
+          pollSensorsArray();
+        };
+  </script>
+     
+  </body>
+</html>
