@@ -268,7 +268,7 @@
 
 \newcommand\@makeabstract[4]{%
   %\clearpage%
-  %\thispagestyle{empty}%
+  \thispagestyle{empty}
   %
   \@makeschapterhead{#1}%
   \@afterheading%
